@@ -2,7 +2,7 @@
 
 ## Mini Project #NgodingMerdeka DDP2
 
-Group Name: satraJava
+Group Name: satraJava  
 Group Members:
 - Alisha Yumna Bakrie
 - Gita Permatasari Sujatmiko
