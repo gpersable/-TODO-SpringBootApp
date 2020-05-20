@@ -1,0 +1,101 @@
+/* Navbar */
+.nav {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem;
+}
+
+.navb {
+    display: inline-flex;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    background-color: #fff;
+    padding: 0 20px;
+    border-radius: 40px;
+    box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
+}
+
+.navb a:hover {
+    text-decoration: none;
+}
+
+.navb-todo-item {
+    color: #83818c;
+    padding: 20px;
+    text-decoration: none;
+    transition: .3s;
+    margin: 0 6px;
+    z-index: 1;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding-right: 40px;
+    position: relative;
+}
+
+.navb-item {
+    color: #83818c;
+    padding: 20px;
+    text-decoration: none;
+    transition: .3s;
+    margin: 0 6px;
+    z-index: 1;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    position: relative;
+}
+
+.navb-item:before {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #dfe2ea;
+    border-radius: 8px 8px 0 0;
+    opacity: 0;
+    transition: .3s;
+}
+
+.navb-item:not(.is-active):hover:before {
+    opacity: 1;
+    bottom: 0;
+}
+
+.navb-item:not(.is-active):hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.navb-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    transition: .4s;
+    height: 5px;
+    z-index: 1;
+    border-radius: 8px 8px 0 0;
+}
+
+@media (max-width: 580px) {
+    .navb {
+        overflow: auto;
+    }
+
+    .navb-todo-item {
+        display: none;
+    }
+}
+/* End of Navbar */
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 1rem;
+    text-align: center;
+}

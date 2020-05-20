@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title, content)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title, css, content)">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <title th:replace="${title}">Layout Title</title>
 
     <link
-        href="https://fonts.googleapis.com/css?family=Work+Sans:400,500|Yeseva+One|Caveat|Montserrat|Open+Sans:300|Overpass&display=swap"
+        href="https://fonts.googleapis.com/css?family=Work+Sans:400,500|Yeseva+One|Caveat|Montserrat|Open+Sans:300|DM+Sans:500,700|Overpass&display=swap"
         rel="stylesheet">
 
     <!-- Bootstrap -->
@@ -19,14 +19,25 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link th:replace="${css}">
 </head>
 
 <body>
+
+    <div class="my-navbar">
+        <nav th:insert="~{navbar :: navbar}"></nav>
+    </div>
+
     <div class="content">
         <div th:replace="${content}">
         </div>
     </div>
+
+    <div class="footer">
+        <footer th:insert="~{footer :: footer}"></footer>
+    </div>
+    
 
     <!-- Bootstrap Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -42,8 +53,36 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <th:block th:fragment="scripts">
-    </th:block>
+    <!-- <script th:replace="${scripts}">
+    </script> -->
+
+    <script>
+        const indicator = document.querySelector('.navb-indicator');
+        const items = document.querySelectorAll('.navb-item');
+
+        function handleIndicator(el) {
+            items.forEach(item => {
+                item.classList.remove('is-active');
+                item.removeAttribute('style');
+            });
+
+            indicator.style.width = `${el.offsetWidth}px`;
+            indicator.style.left = `${el.offsetLeft}px`;
+            indicator.style.backgroundColor = el.getAttribute('active-color');
+
+            el.classList.add('is-active');
+            el.style.color = el.getAttribute('active-color');
+        }
+
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                handleIndicator(e.target)
+            });
+            item.classList.contains('is-active') && handleIndicator(item);
+        });
+    </script>
+    
 </body>
 
 </html>
