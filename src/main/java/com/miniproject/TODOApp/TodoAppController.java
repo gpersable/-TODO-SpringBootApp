@@ -27,6 +27,11 @@ public class TodoAppController {
     @PostMapping("/add")
     public String submitAddTodo(@ModelAttribute TODOList todo) {
         TODOList.addTodo(todo);
+
+        if (todo.isDueToday()) {
+            TODOList.addTodoToday(todo);
+        }
+        
         return "addedTodo";
     }
 

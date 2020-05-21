@@ -45,13 +45,14 @@ public class TODOList {
 
     public static void addTodo(TODOList todo) {
         todoLists.add(todo);
-        for (Iterator<TODOList> iterator = todoLists.iterator(); iterator.hasNext(); ) {
-            TODOList t = iterator.next();
-            if (t.isDueToday()) {
-                todoListsToday.add(t);
-                iterator.remove();
-            }
-        }
+
+        // for ((Iterator<TODOList> iterator = todoLists.iterator(); iterator.hasNext(); ) {
+        //     TODOList t = iterator.next();
+        //     if (t.isDueToday()) {
+        //         todoListsToday.add(t);
+        //         iterator.remove();
+        //     })
+        // }
     }
 
     public static void deleteTodo(TODOList todo) {
@@ -64,13 +65,14 @@ public class TODOList {
 
     public Boolean isDueToday() {
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         String dateNow = date.format(formatter);
 
-        if (this.dueDate.equals(dateNow)) {
+        if (dueDate.equals(dateNow)) {
             return true;
         }
 
         return false;
-    }
+    } 
+    
 }
