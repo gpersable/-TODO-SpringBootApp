@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::link}, ~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World!</title>
+
+    <link rel="stylesheet" th:href="@{/css/addTodo.css}">
+
+</head>
+
+<body>
+
+    <section>
+
+        <form action="#" th:action="@{/add}" th:object="${todo}" method="POST">
+            <div class="form-group">
+                <label for="name">TODO Title</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter a title for your new task...">
+              </div>
+              <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea rows="4" th:field="*{description}" class="form-control" id="desc" placeholder="Add a more detailed information..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="duedate">Due Date</label>
+                <input type="text" th:field="*{dueDate}" class="form-control" id="duedate" placeholder="Format, in English: d-MMM-yyyy (Example: 4 Jul 2020)">
+              </div>
+              <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+
+    </section>
+
+</body>
+
+</html>

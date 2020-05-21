@@ -1,6 +1,6 @@
 package com.miniproject.TODOApp.models;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -45,10 +45,11 @@ public class TODOList {
 
     public static void addTodo(TODOList todo) {
         todoLists.add(todo);
-        for (TODOList t : todoLists) {
+        for (Iterator<TODOList> iterator = todoLists.iterator(); iterator.hasNext(); ) {
+            TODOList t = iterator.next();
             if (t.isDueToday()) {
                 todoListsToday.add(t);
-                todoLists.remove(t);
+                iterator.remove();
             }
         }
     }

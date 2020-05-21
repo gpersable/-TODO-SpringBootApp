@@ -17,6 +17,18 @@ public class TodoAppController {
 
         return "index";
     }
+    
+    @GetMapping("/add")
+    public String addTodo(Model model) {
+        model.addAttribute("todo", new TODOList());
+        return "addTodo";
+    }
+
+    @PostMapping("/add")
+    public String submitAddTodo(@ModelAttribute TODOList todo) {
+        TODOList.addTodo(todo);
+        return "addedTodo";
+    }
 
 
 }

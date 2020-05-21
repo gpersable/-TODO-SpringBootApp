@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::link}, ~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World!</title>
+
+    <link rel="stylesheet" th:href="@{/css/addTodo.css}">
+
+</head>
+
+<body>
+
+    <section>
+
+        <div class="alert alert-success" role="alert">
+            Your new TODO was added.
+          </div>
+
+    </section>
+
+</body>
+
+</html>

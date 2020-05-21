@@ -29,7 +29,7 @@
         <nav th:insert="~{navbar :: navbar}"></nav>
     </div>
 
-    <div class="content">
+    <div class="container-fluid content">
         <div th:replace="${content}">
         </div>
     </div>
@@ -82,7 +82,7 @@
             item.classList.contains('is-active') && handleIndicator(item);
         });
     </script>
-    
+
 </body>
 
 </html>
