@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title th:replace="${title}">Layout Title</title>
+    <title th:replace="${title}"></title>
 
     <link
         href="https://fonts.googleapis.com/css?family=Work+Sans:400,500|Yeseva+One|Caveat|Montserrat|Open+Sans:300|DM+Sans:500,700|Overpass&display=swap"
         rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans&family=La+Belle+Aurore&family=Raleway:wght@300;500;600;700&display=swap"
+        rel="stylesheet">
+
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -37,7 +42,7 @@
     <div class="footer">
         <footer th:insert="~{footer :: footer}"></footer>
     </div>
-    
+
 
     <!-- Bootstrap Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -56,7 +61,7 @@
     <!-- <script th:replace="${scripts}">
     </script> -->
 
-    <script>
+    <!-- <script>
         const indicator = document.querySelector('.navb-indicator');
         const items = document.querySelectorAll('.navb-item');
 
@@ -81,7 +86,7 @@
             });
             item.classList.contains('is-active') && handleIndicator(item);
         });
-    </script>
+    </script> -->
 
 </body>
 

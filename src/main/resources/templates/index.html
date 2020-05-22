@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::link}, ~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World!</title>
+
+    <title>// TODO</title>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Work+Sans:400,500|Yeseva+One|Caveat|Montserrat|Open+Sans:300|DM+Sans:500,700|Overpass&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans&family=La+Belle+Aurore&family=Raleway:wght@300;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/index.css}">
 
@@ -12,33 +30,63 @@
 
 <body>
 
-    <section>
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light p-4">
+        <a class="navbar-brand ml-5" href="#">// TODO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-            <div th:if="${todoListsTodayLength == 0}">
-                <h2>Yeay! No tasks for today.</h2>
-            </div>
-
-                <div class="row">
-                    <div th:each="todoListToday : ${todoListsToday}" class="col-lg-4 col-md-6">
-                        <div class="card activity-column">
-                            <div class="card-header">
-                                <h3 th:text="${todoListToday.name}"></h3>
-                            </div>
-                            <div class="card-body">
-                                <h5 th:text="${todoListToday.description}"></h5><br>
-
-                                <p th:text="${todoListToday.dueDate}"></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-4">
+                    <a class="nav-link navb-link" th:href="@{/about}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navb-link" th:href="@{/today}">Go To Dashboard&nbsp;&nbsp;&nbsp;></a>
+                </li>
+            </ul>
         </div>
+    </nav>
 
+    <section>
+        <div class="date-today">January 22</div>
+        <span class="quotes">“Your brain is for having ideas, not storing them.”<br>— David Allen, Getting Things Done</span>
+        <span class="nearest-dedlen">Nearest Deadlines</span>
+        <span class="deadlines">
+            <div class="mb-2">
+                >&nbsp;&nbsp;&nbsp;<span class="dedlen">Contoh Deadline 1</span>
+            </div>
+            <div class="mb-2">
+                >&nbsp;&nbsp;&nbsp;<span class="dedlen">Contoh Deadline 2</span>
+            </div>
+            <div class="mb-2">
+                >&nbsp;&nbsp;&nbsp;<span class="dedlen">Contoh Deadline 3</span>
+            </div>
+        </span>
+
+        <div class="rect"></div>
+        <img class="daun-img" th:src="@{/images/biar_estetik.png}" />
     </section>
+
+    <!-- <div class="footer">
+        <footer th:insert="~{footer :: footer}"></footer>
+    </div> -->
+
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </body>
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::link}, ~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>// TODO - Today</title>
+
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
+</head>
+
+<body>
+
+    <section>
+        <div class="container-fluid">
+
+            <div th:if="${todoListsTodayLength == 0}">
+                <h2>Yeay! No tasks for today.</h2>
+            </div>
+
+            <div class="row">
+                <div th:each="todoListToday : ${todoListsToday}" class="col-lg-4 col-md-6">
+                    <div class="card activity-column">
+                        <div class="card-header">
+                            <h3 th:text="${todoListToday.name}"></h3>
+                        </div>
+                        <div class="card-body">
+                            <h5 th:text="${todoListToday.description}"></h5><br>
+
+                            <p th:text="${todoListToday.dueDate}"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

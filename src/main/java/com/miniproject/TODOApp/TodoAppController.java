@@ -10,12 +10,17 @@ import org.springframework.ui.Model;
 @Controller
 public class TodoAppController {
     @GetMapping("/")
-    public String index(@ModelAttribute TODOList todo, Model model) {
+    public String index(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/today")
+    public String today(@ModelAttribute TODOList todo, Model model) {
 
         model.addAttribute("todoListsToday", TODOList.getTodoListsToday());
         model.addAttribute("todoListsTodayLength", TODOList.getTodoListsToday().size());
 
-        return "index";
+        return "today";
     }
     
     @GetMapping("/add")
