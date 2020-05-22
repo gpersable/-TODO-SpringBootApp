@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TODOList {
     private static ArrayList<TODOList> todoLists = new ArrayList<>();
-    private static ArrayList<TODOList> todoListsToday;
+    private static ArrayList<TODOList> todoListsToday = new ArrayList<>();
     private String name;
     private String description;
     private String dueDate;
@@ -37,10 +37,9 @@ public class TODOList {
 
     public static ArrayList<TODOList> getTodoLists() {
         ArrayList<TODOList> newTodoLists = new ArrayList<>();
-        LocalDate date = LocalDate.now();
 
         for (TODOList todo : todoLists){
-            if (date.compareTo(LocalDate.parse(todo.getDueDate())) <= 0){
+            if (!hasPassed(todo.getDueDate())){
                 newTodoLists.add(todo);
             }
                 // newTodoLists.remove(todo);
@@ -50,11 +49,6 @@ public class TODOList {
     }
 
     public static ArrayList<TODOList> getTodoListsToday() {
-        ArrayList<TODOList> todoListsToday = new ArrayList<>();
-        for (TODOList todo : todoLists){
-            if (todo.isDueToday())
-                todoListsToday.add(todo);
-        }
         return todoListsToday;
     }
 
@@ -90,7 +84,7 @@ public class TODOList {
         return false;
     } 
 
-    public Boolean hasPassed(String other) {
+    public static Boolean hasPassed(String other) {
         LocalDate date = LocalDate.now();
         if (date.compareTo(LocalDate.parse(other)) > 0) {
             return true;
