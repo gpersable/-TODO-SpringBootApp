@@ -5,12 +5,20 @@ import com.miniproject.TODOApp.models.TODOList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 
 @Controller
 public class TodoAppController {
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(@ModelAttribute TODOList todo, Model model) {
+        LocalDate tgl = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd");
+        String date = tgl.format(formatter);
+
+        model.addAttribute("todaysDate", date);
+        model.addAttribute("nearestDeadlines", TODOList.getNearestDeadlines());
         return "index";
     }
 
