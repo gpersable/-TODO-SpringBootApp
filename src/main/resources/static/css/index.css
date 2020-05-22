@@ -23,7 +23,7 @@ body {
 .navb-link:before {
     content: "";
     position: absolute;
-    bottom: -6px;
+    bottom: -5px;
     left: 0;
     width: 100%;
     height: 5px;
@@ -80,6 +80,33 @@ body {
     border-bottom: #F2DFCE solid 3px;
     transition: border .25s;
 }
+
+.dedlen-date {
+    display: none;
+    transition: .3s;
+    margin-left: 10px;
+    color: #83818c;
+    transition: .3s;
+}
+
+.dedlen:hover ~ .dedlen-date {
+    display: inline;
+    opacity: 1;
+    transition: .3s;
+}
+
+.dedlen:hover ~ .dedlen-date:before {
+    opacity: 1;
+}
+
+/* .dedlen-date {
+    color: #83818c;
+    text-decoration: none;
+    transition: .3s;
+    z-index: 1;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+} */
 
 .rect {
     position: absolute;

@@ -43,6 +43,15 @@ public class TODOList {
         return this.dueDate;
     }
 
+    public String parseDueDate(String date) {
+        // buat dipake di templates, biar tanggalnya lebih human readable
+        // contoh: input user 2020-04-04, di viewnya April 4, 2020
+        LocalDate tgl = LocalDate.parse(date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, uuuu");
+        String date2 = tgl.format(formatter);
+        return date2;
+    }
+
     public void setDueDate(String date) {
         this.dueDate = date;
     }
@@ -67,9 +76,11 @@ public class TODOList {
 
         for (TODOList todo : listTodo){
             if (!hasPassed(todo.getDueDate())){
+                // kalau belum lewat hari ini
                 newListTodo.add(todo);
             }
         }
+      
         Collections.sort(newListTodo, new Comparator<TODOList>() {
             @Override
             public int compare(TODOList o1, TODOList o2) {
@@ -86,11 +97,14 @@ public class TODOList {
     public static ArrayList<TODOList> getTodoListsToday() {
         ArrayList<TODOList> newListsToday = new ArrayList<>();
 
+
+        // agar todoListsToday ter-update tiap di-get
         for (TODOList todo : getTodoLists()){
             if (todo.isDueToday()){
                 newListsToday.add(todo);
             }
         }
+      
         Collections.sort(newListsToday, new Comparator<TODOList>() {
             @Override
             public int compare(TODOList o1, TODOList o2) {
@@ -134,6 +148,32 @@ public class TODOList {
             return true;
         }
         return false;
+    }
+
+    public static TODOList[] getNearestDeadlines() {
+        if (getTodoLists().size() != 0) {
+            if (getTodoLists().size() == 1) {
+                TODOList[] nearestDeadlines = new TODOList[1];
+                nearestDeadlines[0] = getTodoLists().get(0);
+                return nearestDeadlines;
+            }
+            else if (getTodoLists().size() == 2) {
+                TODOList[] nearestDeadlines = new TODOList[2];
+                for(int i = 0; i < 2; i++) {
+                    nearestDeadlines[i] = getTodoLists().get(i);
+                }
+                return nearestDeadlines;
+            }
+            else if (getTodoLists().size() >= 3) {
+                TODOList[] nearestDeadlines = new TODOList[3];
+                for(int i = 0; i < 3; i++) {
+                    nearestDeadlines[i] = getTodoLists().get(i);
+                }
+                return nearestDeadlines;
+            }
+        }
+        TODOList[] nearestDeadlines = {};
+        return nearestDeadlines;
     }
     
 }

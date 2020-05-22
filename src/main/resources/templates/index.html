@@ -43,26 +43,27 @@
                     <a class="nav-link navb-link" th:href="@{/about}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navb-link" th:href="@{/today}"><strong>Go To Dashboard&nbsp;&nbsp;&nbsp;></strong></a>
+                    <a class="nav-link navb-link" th:href="@{/all}"><strong>Go To Dashboard&nbsp;&nbsp;&nbsp;></strong></a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <section>
-        <div class="date-today">January 22</div>
+        <div class="date-today" th:text="${todaysDate}"></div>
         <span class="quotes">“Your brain is for having ideas, not storing them.”<br>— David Allen, Getting Things Done</span>
         <span class="nearest-dedlen">Nearest Deadlines</span>
         <span class="deadlines">
-            <div class="mb-2">
-                >&nbsp;&nbsp;&nbsp;<span class="dedlen">Contoh Deadline 1</span>
+            <div th:if="${nearestDeadlines.length} != 0">
+                <div class="mb-2" th:each="due : ${nearestDeadlines}">
+                    >&nbsp;&nbsp;&nbsp;<span class="dedlen" th:text="${due.name}"></span>
+                    <span class="dedlen-date" th:text="'|&nbsp;&nbsp;&nbsp;' + ${due.dueDate}"></span>
+                </div>
             </div>
-            <div class="mb-2">
-                >&nbsp;&nbsp;&nbsp;<span class="dedlen">Contoh Deadline 2</span>
+            <div class="mb-2" th:unless="${nearestDeadlines.length} != 0">
+                >&nbsp;&nbsp;&nbsp;<span class="dedlen">You have no deadlines.</span>
             </div>
-            <div class="mb-2">
-                >&nbsp;&nbsp;&nbsp;<span class="dedlen">Contoh Deadline 3</span>
-            </div>
+            
         </span>
 
         <div class="rect"></div>
