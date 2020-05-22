@@ -22,6 +22,15 @@ public class TodoAppController {
 
         return "today";
     }
+
+    @GetMapping("/all")
+    public String allTodos(@ModelAttribute TODOList todo, Model model) {
+
+        model.addAttribute("todoLists", TODOList.getTodoLists());
+        model.addAttribute("todoListsLength", TODOList.getTodoLists().size());
+
+        return "allTodos";
+    }
     
     @GetMapping("/add")
     public String addTodo(Model model) {
@@ -33,9 +42,9 @@ public class TodoAppController {
     public String submitAddTodo(@ModelAttribute TODOList todo) {
         TODOList.addTodo(todo);
 
-        if (todo.isDueToday()) {
-            TODOList.addTodoToday(todo);
-        }
+        // if (todo.isDueToday()) {
+        //     TODOList.addTodoToday(todo);
+        // }
         
         return "addedTodo";
     }
