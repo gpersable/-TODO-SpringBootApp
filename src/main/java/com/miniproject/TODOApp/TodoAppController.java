@@ -40,5 +40,10 @@ public class TodoAppController {
         return "addedTodo";
     }
 
+    @GetMapping("/about")
+    public String aboutTodo(Model model){
+        return "about";
+    }
+
 
 }
