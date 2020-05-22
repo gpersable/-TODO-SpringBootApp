@@ -2,6 +2,11 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
+.title {
+    margin: 1rem auto;
+    text-align: center;
+}
+
 /* Navbar */
 .nav {
     display: flex;
@@ -97,14 +102,12 @@ body {
         display: none;
     }
 }
+
 /* End of Navbar */
 
-/* Content */
 .content {
-    
+    text-align: center;
 }
-
-/* End of Content */
 
 .footer {
     position: absolute;

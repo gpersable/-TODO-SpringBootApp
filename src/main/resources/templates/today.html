@@ -15,6 +15,8 @@
     <section>
         <div class="container-fluid">
 
+            <h1 class="title">TODOs for Today</h1>
+
             <div th:if="${todoListsTodayLength == 0}">
                 <h2>Yeay! No tasks for today.</h2>
             </div>
@@ -28,7 +30,7 @@
                         <div class="card-body">
                             <h5 th:text="${todoListToday.description}"></h5><br>
 
-                            <p th:text="${todoListToday.dueDate}"></p>
+                            <p th:text="${todoListToday.parseDueDate(todoListToday.dueDate)}"></p>
 
                         </div>
                     </div>

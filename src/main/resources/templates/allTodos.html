@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>// TODO - All TODOs</title>
 
-    <link rel="stylesheet" th:href="@{/css/allTodos.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
 
 </head>
 
@@ -14,6 +14,8 @@
 
     <section>
         <div class="container-fluid">
+
+            <h1 class="title">All TODOs</h1>
 
             <div th:if="${todoListsLength == 0}">
                 <h2>Yeay! No tasks for today.</h2>
@@ -28,7 +30,7 @@
                             <div class="card-body">
                                 <h5 th:text="${todoList.description}"></h5><br>
 
-                                <p th:text="${todoList.dueDate}"></p>
+                                <p th:text="${todoList.parseDueDate(todoList.dueDate)}"></p>
 
                             </div>
                         </div>
