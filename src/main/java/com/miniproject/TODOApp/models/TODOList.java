@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TODOList {
     private static ArrayList<TODOList> todoLists = new ArrayList<>();
-    private static ArrayList<TODOList> todoListsToday = new ArrayList<>();
+    private static ArrayList<TODOList> todoListsToday;
     private String name;
     private String description;
     private String dueDate;
@@ -36,10 +36,40 @@ public class TODOList {
     }
 
     public static ArrayList<TODOList> getTodoLists() {
-        return todoLists;
+        ArrayList<TODOList> newTodoLists = new ArrayList<>();
+
+        for (TODOList todo : todoLists){
+            if (!hasPassed(todo.getDueDate())){
+                newTodoLists.add(todo);
+            }
+        }
+        Collections.sort(newTodoLists, new Comparator<TODOList>() {
+            @Override
+            public int compare(TODOList o1, TODOList o2) {
+                int value1 = LocalDate.parse(o1.getDueDate()).compareTo(LocalDate.parse(o2.getDueDate()));
+                if (value1 == 0) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+                return value1;
+            }
+        });
+        return newTodoLists;
     }
 
     public static ArrayList<TODOList> getTodoListsToday() {
+        ArrayList<TODOList> todoListsToday = new ArrayList<>();
+
+        for (TODOList todo : todoLists){
+            if (todo.isDueToday()){
+                todoListsToday.add(todo);
+            }
+        }
+        Collections.sort(todoListsToday, new Comparator<TODOList>() {
+            @Override
+            public int compare(TODOList o1, TODOList o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         return todoListsToday;
     }
 
@@ -74,5 +104,13 @@ public class TODOList {
 
         return false;
     } 
+
+    public static Boolean hasPassed(String other) {
+        LocalDate date = LocalDate.now();
+        if (date.compareTo(LocalDate.parse(other)) > 0) {
+            return true;
+        }
+        return false;
+    }
     
 }
