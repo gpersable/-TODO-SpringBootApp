@@ -42,9 +42,17 @@ public class TODOList {
             if (!hasPassed(todo.getDueDate())){
                 newTodoLists.add(todo);
             }
-                // newTodoLists.remove(todo);
         }
-
+        Collections.sort(newTodoLists, new Comparator<TODOList>() {
+            @Override
+            public int compare(TODOList o1, TODOList o2) {
+                int value1 = LocalDate.parse(o1.getDueDate()).compareTo(LocalDate.parse(o2.getDueDate()));
+                if (value1 == 0) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+                return value1;
+            }
+        });
         return newTodoLists;
     }
 
@@ -56,7 +64,12 @@ public class TODOList {
                 todoListsToday.add(todo);
             }
         }
-
+        Collections.sort(todoListsToday, new Comparator<TODOList>() {
+            @Override
+            public int compare(TODOList o1, TODOList o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         return todoListsToday;
     }
 
