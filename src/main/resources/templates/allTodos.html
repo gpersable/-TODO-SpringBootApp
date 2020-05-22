@@ -15,20 +15,20 @@
     <section>
         <div class="container-fluid">
 
-            <div th:if="${todoListsTodayLength == 0}">
+            <div th:if="${todoListsLength == 0}">
                 <h2>Yeay! No tasks for today.</h2>
             </div>
 
                 <div class="row">
-                    <div th:each="todoListToday : ${todoListsToday}" class="col-lg-4 col-md-6">
+                    <div th:each="todoList : ${todoLists}" class="col-lg-4 col-md-6">
                         <div class="card activity-column">
                             <div class="card-header">
-                                <h3 th:text="${todoListToday.name}"></h3>
+                                <h3 th:text="${todoList.name}"></h3>
                             </div>
                             <div class="card-body">
-                                <h5 th:text="${todoListToday.description}"></h5><br>
+                                <h5 th:text="${todoList.description}"></h5><br>
 
-                                <p th:text="${todoListToday.dueDate}"></p>
+                                <p th:text="${todoList.dueDate}"></p>
 
                             </div>
                         </div>

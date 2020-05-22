@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TODOList {
     private static ArrayList<TODOList> todoLists = new ArrayList<>();
-    private static ArrayList<TODOList> todoListsToday = new ArrayList<>();
+    private static ArrayList<TODOList> todoListsToday;
     private String name;
     private String description;
     private String dueDate;
@@ -49,6 +49,14 @@ public class TODOList {
     }
 
     public static ArrayList<TODOList> getTodoListsToday() {
+        ArrayList<TODOList> todoListsToday = new ArrayList<>();
+
+        for (TODOList todo : todoLists){
+            if (todo.isDueToday()){
+                todoListsToday.add(todo);
+            }
+        }
+
         return todoListsToday;
     }
 
