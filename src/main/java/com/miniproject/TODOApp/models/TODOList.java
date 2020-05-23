@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.StandardOpenOption;
-import com.opencsv.CSVReader;
+import com.opencsv.CSVReader; 
 // import com.opencsv.CSVWriter;
 
 
@@ -215,6 +215,24 @@ public class TODOList {
         }
         TODOList[] nearestDeadlines = {};
         return nearestDeadlines;
+    }
+
+    public static String randomQuote() throws FileNotFoundException, IOException {
+        // File quotes = new File("./src/main/resources/static/text/quotes.txt");
+        // Scanner sc = new Scanner(quotes);
+        Random random = new Random();
+        
+        int randomLine = random.nextInt(9); //for now, ada 10 quotes di quotes.txt
+        String quote = Files.readAllLines(
+                        Paths.get("./src/main/resources/static/text/quotes.txt")
+                        ).get(randomLine);
+
+        // for (int i = 0; i < randomLine; i++) {
+        //     quote = sc.nextLine();
+        // }
+
+        // sc.close();
+        return quote;
     }
     
 }
