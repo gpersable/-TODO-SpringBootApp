@@ -95,10 +95,6 @@ body {
     transition: .3s;
 }
 
-.dedlen:hover ~ .dedlen-date:before {
-    opacity: 1;
-}
-
 /* .dedlen-date {
     color: #83818c;
     text-decoration: none;

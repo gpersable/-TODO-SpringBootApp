@@ -25,18 +25,40 @@ public class TodoAppController {
     @GetMapping("/today")
     public String today(@ModelAttribute TODOList todo, Model model) {
 
+        model.addAttribute("todo", todo);
         model.addAttribute("todoListsToday", TODOList.getTodoListsToday());
         model.addAttribute("todoListsTodayLength", TODOList.getTodoListsToday().size());
 
         return "today";
     }
 
+    @PostMapping("/today")
+    public String submitTodoToday(@ModelAttribute TODOList todo, Model model) {
+        TODOList.deleteTodo(todo);
+
+        model.addAttribute("todo", todo);
+        model.addAttribute("todoListsToday", TODOList.getTodoListsToday());
+        model.addAttribute("todoListsTodayLength", TODOList.getTodoListsToday().size());
+        return "today";
+    }
+
     @GetMapping("/all")
     public String allTodos(@ModelAttribute TODOList todo, Model model) {
 
+        model.addAttribute("todo", todo);
         model.addAttribute("todoLists", TODOList.getTodoLists());
         model.addAttribute("todoListsLength", TODOList.getTodoLists().size());
 
+        return "allTodos";
+    }
+
+    @PostMapping("/all")
+    public String submitTodo(@ModelAttribute TODOList todo, Model model) {
+        TODOList.deleteTodo(todo);
+
+        model.addAttribute("todo", todo);
+        model.addAttribute("todoLists", TODOList.getTodoLists());
+        model.addAttribute("todoListsLength", TODOList.getTodoLists().size());
         return "allTodos";
     }
     

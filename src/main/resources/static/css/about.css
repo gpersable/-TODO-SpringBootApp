@@ -52,6 +52,13 @@ body {
     font-size: 5rem;
 }
 
+.hmpg-btn {
+    border: 1px solid #F2DFCE;
+}
+
+.hmpg-btn:hover {
+    background-color: #F2DFCE;
+}
 
 .rect {
     position: absolute;

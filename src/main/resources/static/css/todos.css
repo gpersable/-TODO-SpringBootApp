@@ -1,0 +1,37 @@
+.card {
+    box-shadow: 0px 0px 0px 0px;
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover {
+    transform: scale(1.05, 1.05);
+    -webkit-transform: scale(1.05, 1.05);
+    box-shadow: 1px 1px 10px 1px rgb(216, 208, 202);
+}
+
+.card-header {
+    background-color: #F2DFCE;
+}
+
+input[type=checkbox] {
+    display: flexbox;
+    float: right;
+    margin-top: -15px;
+    zoom: 2;
+}
+
+.mark-as-done {
+    display: none;
+    position: absolute;
+    top: -25px;
+    right: 0;
+    transition: .3s;
+    color: #83818c;
+    font-size: 0.75rem;
+}
+
+input[type=checkbox]:hover ~ .mark-as-done {
+    display: inline;
+    opacity: 1;
+}
