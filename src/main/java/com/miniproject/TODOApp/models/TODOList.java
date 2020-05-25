@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.StandardOpenOption;
 import com.opencsv.CSVReader; 
-// import com.opencsv.CSVWriter;
+import com.opencsv.CSVWriter;
 
 
 public class TODOList {
@@ -128,46 +128,84 @@ public class TODOList {
         } catch (Exception e){}
     }
 
-    public static void deleteTodo(TODOList todo) {
+    public static void deleteTodo(TODOList task) {
+        int num = 0;
+        try ( CSVReader reader2 = new CSVReader(new FileReader(CSV_PATH));){
+            List<String[]> allElements = reader2.readAll();   
+            for (String[] todo : allElements) {
+                if (todo[0].equals(task.getName())) break;
+                else num++;
+            }
+            allElements.remove(num);
+            FileWriter sw = new FileWriter(CSV_PATH);
+            CSVWriter writer = new CSVWriter(sw);
+            writer.writeAll(allElements);
+            writer.close();
+        } catch (Exception e) {}
+
+        // allElements.remove(rowNumber);
+        // FileWriter sw = new FileWriter(CSV_PATH);
+        // CSVWriter writer = new CSVWriter(sw);
+        // writer.writeAll(allElements);
+        // writer.close();
+
+        // try (
+        //     BufferedWriter writer = Files.newBufferedWriter(Paths.get(CSV_PATH));
+        //     CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
+        // ) {
+        //     System.out.println(task.getName());
+
+        //     for (TODOList todo : getTodoLists()){
+        //         System.out.println(task.getName());
+        //         if (todo.getName().equals(task.getName())){
+        //             csvPrinter.printRecord(todo.getName(), todo.getDueDate(), todo.getDescription());
+        //         }
+        //     }
+        //     csvPrinter.flush();   
+        //     csvPrinter.close();      
+        // } catch (Exception e){}
+        
         // ArrayList<TODOList> newList = new ArrayList<>();
 
-        for (TODOList t : getTodoLists()){
-            if (t.equals(todo)){
-                getTodoLists().remove(todo);
-            }
-        }
+        // for (TODOList t : getTodoLists()){
+        //     if (t.equals(todo)){
+        //         getTodoLists().remove(todo);
+        //     }
+        // }
 
-        for (TODOList t : getTodoListsToday()) {
-            if (t.equals(todo)) {
-                getTodoListsToday().remove(todo);
-            }
-        }
+        // for (TODOList t : getTodoListsToday()) {
+        //     if (t.equals(todo)) {
+        //         getTodoListsToday().remove(todo);
+        //     }
+        // }
 
-        try (
-            Reader reader = Files.newBufferedReader(Paths.get(CSV_PATH));
-            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
-            CSVReader csvReader = new CSVReader(reader);
-            BufferedWriter writer = Files.newBufferedWriter(Paths.get(CSV_PATH), StandardCharsets.UTF_8, 
-                StandardOpenOption.APPEND);
-            CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
-        ) {
-            // list ini isinya semua row yang ada di file csv nya
-            List<String[]> allElements = csvReader.readAll();
-            for (CSVRecord csvRecord : csvParser) {
-                // si objek todo gak masuk ke kondisi ini
-                // jadinya dia gak ngeremove row yg dianya
-                // mungkin masalahnya di form html-nya (thymeleaf) ?
-                // help gais
-                if (todo.getName().equals(csvRecord.get(0)) && todo.getDueDate().equals(csvRecord.get(1))
-                    && todo.getDescription().equals(csvRecord.get(2))) {
-                        allElements.remove((int)csvParser.getCurrentLineNumber()); // atau ada masalah di sini??
-                        csvPrinter.printRecords(allElements);
-                        csvPrinter.flush();
-                }
-            }
-            csvParser.close();
-            csvPrinter.close();
-        } catch (Exception e){}
+        // try (
+        //     Reader reader = Files.newBufferedReader(Paths.get(CSV_PATH));
+        //     CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+        //     CSVReader csvReader = new CSVReader(reader);
+        //     BufferedWriter writer = Files.newBufferedWriter(Paths.get(CSV_PATH), StandardCharsets.UTF_8, 
+        //         StandardOpenOption.APPEND);
+        //     CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
+        // ) {
+        //     // list ini isinya semua row yang ada di file csv nya
+        //     List<String[]> allElements = csvReader.readAll();
+        //     System.out.println("a");
+        //     System.out.println(todo.getName());
+        //     for (CSVRecord csvRecord : csvParser) {
+        //         // si objek todo gak masuk ke kondisi ini
+        //         // jadinya dia gak ngeremove row yg dianya
+        //         // mungkin masalahnya di form html-nya (thymeleaf) ?
+        //         // help gais
+        //         if (todo.getName().equals(csvRecord.get(0))) {
+        //             System.out.println("a");
+        //             allElements.remove((int)csvParser.getCurrentLineNumber()); // atau ada masalah di sini??
+        //                 csvPrinter.printRecords(allElements);
+        //                 csvPrinter.flush();
+        //         }
+        //     }
+        //     csvParser.close();
+        //     csvPrinter.close();
+        // } catch (Exception e){}
     }
 
 
