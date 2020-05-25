@@ -27,7 +27,9 @@
                             <div class="card-header">
                                 <h3 class="mb-0 mr-5" th:text="${todoList.name}"></h3>
                                 <form action="#" th:action="@{/all}" th:object="${todo}" method="POST">
-                                    <input type="checkbox" onchange="this.form.submit()">
+                                    <input type="checkbox" th:field="*{name}" th:value="${todoList.name}" onchange="this.form.submit()">
+                                    <!-- <input type="hidden" th:field="*{dueDate}" th:value="${todoList.dueDate}"></input>
+                                    <input type="hidden" th:field="*{description}" th:value="${todoList.description}"></input> -->
                                     <span class="mark-as-done">Mark as done</span>
                                 </form>
                             </div>
