@@ -54,6 +54,8 @@ body {
 
 .hmpg-btn {
     border: 1px solid #F2DFCE;
+    position: absolute;
+    left:0;
 }
 
 .hmpg-btn:hover {
