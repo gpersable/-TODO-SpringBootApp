@@ -93,6 +93,4 @@ public class TodoAppController {
     public String aboutTodo(Model model){
         return "about";
     }
-
-
 }

@@ -30,7 +30,8 @@ public class TODOList {
     }
 
     public void setName(String name) {
-        this.name = name;
+        String cases = name.substring(0,1).toUpperCase();
+        this.name = cases + name.substring(1);
     }
 
     public String getDescription() {
