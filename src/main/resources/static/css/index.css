@@ -50,7 +50,7 @@ body {
 
 .quotes {
     position: absolute;
-    width: auto;
+    width: 50%;
     left: 12%;
     top: 48.5%;
 }

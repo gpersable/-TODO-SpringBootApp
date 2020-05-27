@@ -260,10 +260,8 @@ public class TODOList {
         // Scanner sc = new Scanner(quotes);
         Random random = new Random();
         
-        int randomLine = random.nextInt(9); //for now, ada 10 quotes di quotes.txt
-        String quote = Files.readAllLines(
-                        Paths.get("./src/main/resources/static/text/quotes.txt")
-                        ).get(randomLine);
+        List<String> listQuotes = Files.readAllLines(Paths.get("./src/main/resources/static/text/quotes.txt"));
+        String quote = listQuotes.get(random.nextInt(listQuotes.size()));
 
         // for (int i = 0; i < randomLine; i++) {
         //     quote = sc.nextLine();
