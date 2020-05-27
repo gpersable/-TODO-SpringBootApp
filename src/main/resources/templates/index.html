@@ -51,7 +51,7 @@
 
     <section>
         <div class="date-today" th:text="${todaysDate}"></div>
-        <span class="quotes">“Your brain is for having ideas, not storing them.”<br>— David Allen, Getting Things Done</span>
+        <span class="quotes" th:text = "${quote}"></span>
         <span class="nearest-dedlen">Nearest Deadlines</span>
         <span class="deadlines">
             <div th:if="${nearestDeadlines.length} != 0">
