@@ -5,6 +5,9 @@ import com.miniproject.TODOApp.models.TODOList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +19,13 @@ public class TodoAppController {
         LocalDate tgl = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd");
         String date = tgl.format(formatter);
+
+        try{
+            String quote = TODOList.randomQuote();
+            model.addAttribute("quote", quote);
+        }
+        catch(FileNotFoundException ex){}
+        catch(IOException x){}
 
         model.addAttribute("todaysDate", date);
         model.addAttribute("nearestDeadlines", TODOList.getNearestDeadlines());
