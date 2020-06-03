@@ -5,6 +5,7 @@ import com.miniproject.TODOApp.models.TODOList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,10 +17,12 @@ import java.time.format.DateTimeFormatter;
 public class TodoAppController {
     @GetMapping("/")
     public String index(@ModelAttribute TODOList todo, Model model) {
+        // untuk format tanggal di index.html
         LocalDate tgl = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd");
         String date = tgl.format(formatter);
 
+        // implement random quotes on index.html
         try{
             String quote = TODOList.randomQuote();
             model.addAttribute("quote", quote);
@@ -43,7 +46,8 @@ public class TodoAppController {
     }
 
     @PostMapping("/today")
-    public String submitTodoToday(@ModelAttribute TODOList todo, Model model) {
+    public String submitTodoToday(@ModelAttribute TODOList todo, BindingResult result, Model model) {
+        // delete a todo from "Today" page
         TODOList.deleteTodo(todo);
 
         model.addAttribute("todo", todo);
@@ -63,7 +67,8 @@ public class TodoAppController {
     }
 
     @PostMapping("/all")
-    public String submitTodo(@ModelAttribute TODOList todo, Model model) {
+    public String submitTodo(@ModelAttribute TODOList todo, BindingResult result, Model model) {
+        // delete a todo from "All" page
         TODOList.deleteTodo(todo);
 
         model.addAttribute("todo", todo);
@@ -81,11 +86,6 @@ public class TodoAppController {
     @PostMapping("/add")
     public String submitAddTodo(@ModelAttribute TODOList todo) {
         TODOList.addTodo(todo);
-
-        // if (todo.isDueToday()) {
-        //     TODOList.addTodoToday(todo);
-        // }
-        
         return "addedTodo";
     }
 
