@@ -21,25 +21,35 @@
                 <h2>Yeay! No tasks for today.</h2>
             </div>
 
-                <div class="row">
-                    <div th:each="todoList : ${todoLists}" class="col-lg-4 col-md-6">
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h3 class="mb-0 mr-5" th:text="${todoList.name}"></h3>
-                                <form action="#" th:action="@{/all}" th:object="${todo}" method="POST">
+            <div class="row">
+                <div th:each="todoList : ${todoLists}" class="col-lg-4 col-md-6">
+                    <div class="card mb-3 mt-3">
+                        <div class="card-header">
+                            <h3 class="mb-0 mr-5" th:text="${todoList.name}"></h3>
+                            <form action="#" th:action="@{/all}" th:object="${todo}" method="POST">
                                     <input type="checkbox" th:field="*{name}" th:value="${todoList.name}" onchange="this.form.submit()">
-                                    <!-- <input type="hidden" th:field="*{dueDate}" th:value="${todoList.dueDate}"></input>
-                                    <input type="hidden" th:field="*{description}" th:value="${todoList.description}"></input> -->
-                                    <span class="mark-as-done">Mark as done</span>
-                                </form>
-                            </div>
-                            <div class="card-body">
-                                <h5 th:text="${todoList.description}"></h5>
-                                <p th:text="'Due Date: ' + ${todoList.parseDueDate(todoList.dueDate)}"></p>
-                            </div>
+                            <span class="mark-as-done">Mark as done and delete</span>
+                            </form>
                         </div>
+                        <div class="card-body">
+                            <h5 th:text="${todoList.description}"></h5>
+                            <p th:text="'Due Date: ' + ${todoList.parseDueDate(todoList.dueDate)}"></p>
+
+                            <!-- <span class="trash-icon">
+                                <form id="delete-form" action="#" th:action="@{/all}" th:object="${todo}" method="POST">
+                                    <input type="hidden" th:value="${todoList.name}" th:field="*{name}">
+                                    <a class="trash" href="javascript:$('#delete-form').submit();"><i
+                                            class="far fa-trash-alt"></i></a>
+                                </form>
+                            </span>
+                            <span class="delete">Delete</span> -->
+
+
+                        </div>
+
                     </div>
                 </div>
+            </div>
 
 
         </div>

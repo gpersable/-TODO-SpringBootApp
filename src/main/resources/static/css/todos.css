@@ -35,3 +35,38 @@ input[type=checkbox]:hover ~ .mark-as-done {
     display: inline;
     opacity: 1;
 }
+
+.trash-icon {
+    text-align: right;
+}
+
+.trash {
+    text-decoration: none;
+    color: crimson;
+    opacity: 0.8;
+    text-align: right;
+    font-size: 1.2rem;
+    transition: .5s color;
+}
+
+.trash:hover {
+    opacity: 1;
+    color: crimson;
+    transition: .5s color;
+}
+
+.delete {
+    display: none;
+    position: absolute;
+    bottom: 22.5px;
+    right: 45px;
+    transition: .3s;
+    color: crimson;
+    font-size: 0.9rem;
+}
+
+.trash-icon:hover ~ .delete {
+    display: inline;
+    opacity: 1;
+    transition: .3s;
+}
