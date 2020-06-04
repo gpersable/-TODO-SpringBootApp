@@ -47,6 +47,9 @@ public class TODOList {
         return this.dueDate;
     }
 
+    /** 
+     * Method for parsing the dueDate to a more human readable format
+     */
     public String parseDueDate(String date) {
         // buat dipake di templates, biar tanggalnya lebih human readable
         // contoh: input user 2020-04-04, di viewnya April 4, 2020
@@ -60,18 +63,24 @@ public class TODOList {
         this.dueDate = date;
     }
 
+    /** 
+     * Method for getting the todo list for all todos (today + the following days)
+     */
     public static ArrayList<TODOList> getTodoLists() {
-        // agar todoLists ter-update tiap di-get
         ArrayList<TODOList> listTodo = new ArrayList<>();
         ArrayList<TODOList> newListTodo = new ArrayList<>();
 
         // adding the data from csv to listTodo
         // agar listTodo dan newListTodo ter-update tiap di-get
         try (
+            // membaca TODOList.csv
             Reader reader = Files.newBufferedReader(Paths.get(CSV_PATH));
+            // mem-parse file TODOList.csv
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
         ) {
             for (CSVRecord csvRecord : csvParser) {
+                // csvRecord[n] = [name, dueDate, description]
+                
                 TODOList todo = new TODOList();
 
                 todo.name = csvRecord.get(0);
@@ -105,6 +114,9 @@ public class TODOList {
         return newListTodo;
     }
 
+    /** 
+     * Method for getting the todo list for today
+     */
     public static ArrayList<TODOList> getTodoListsToday() {
         ArrayList<TODOList> newListsToday = new ArrayList<>();
 
@@ -125,8 +137,11 @@ public class TODOList {
         return newListsToday;
     }
 
+    /** 
+     * Method for adding a task/todo
+     */
     public static void addTodo(TODOList todo){
-        // write the data to TODOList.csv so the data wont disappear
+        // write the data to TODOList.csv so the data won't disappear
         try (
             BufferedWriter writer = Files.newBufferedWriter(Paths.get(CSV_PATH), StandardCharsets.UTF_8, 
                 StandardOpenOption.APPEND);
@@ -138,8 +153,11 @@ public class TODOList {
         } catch (Exception e){}
     }
 
+    /** 
+     * Method for deleting a task/todo
+     */
     public static void deleteTodo(TODOList task) {
-        // delete a todo from TODOList.csv
+        // delete a todo from TODOList.csv based on the name
         int num = 0;
         try ( CSVReader reader2 = new CSVReader(new FileReader(CSV_PATH));){
             List<String[]> allElements = reader2.readAll();   
@@ -155,8 +173,10 @@ public class TODOList {
         } catch (Exception e) {}
     }
 
+    /** 
+     * Method for checking whether the todo dueDate is due today or not
+     */
     public Boolean isDueToday() {
-        // a method to check whether the todo dueDate is due today or not
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         String dateNow = date.format(formatter);
@@ -168,8 +188,10 @@ public class TODOList {
         return false;
     } 
 
+    /** 
+     * Method for checking whether the dueDate has passed today or not
+     */
     public static Boolean hasPassed(String other) {
-        // a method to check whether the dueDate has passed today or not
         LocalDate date = LocalDate.now();
         if (date.compareTo(LocalDate.parse(other)) > 0) {
             return true;
@@ -177,8 +199,10 @@ public class TODOList {
         return false;
     }
 
+    /** 
+     * Method for getting the 0-3 nearest deadlines
+     */
     public static TODOList[] getNearestDeadlines() {
-        // a method to get the nearest deadlines
         // to implement nearest deadlines view on index.html
         if (getTodoLists().size() != 0) {
             if (getTodoLists().size() == 1) {
@@ -205,21 +229,15 @@ public class TODOList {
         return nearestDeadlines;
     }
 
+    /** 
+     * Method for implementing random quote view on index.html
+     */
     public static String randomQuote() throws FileNotFoundException, IOException {
-        // a method to implement random quote view on index.html
-        
-        // File quotes = new File("./src/main/resources/static/text/quotes.txt");
-        // Scanner sc = new Scanner(quotes);
         Random random = new Random();
         
         List<String> listQuotes = Files.readAllLines(Paths.get("./src/main/resources/static/text/quotes.txt"));
         String quote = listQuotes.get(random.nextInt(listQuotes.size()));
 
-        // for (int i = 0; i < randomLine; i++) {
-        //     quote = sc.nextLine();
-        // }
-
-        // sc.close();
         return quote;
     }
     
