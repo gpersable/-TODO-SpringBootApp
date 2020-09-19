@@ -14,10 +14,10 @@ Clone this repository and run TodoAppApplication.java
 ## Authors
 Group Name: B03 - sastraJava  
 Group Members:
-- Alisha Yumna Bakri - 1906400173
-- Gita Permatasari Sujatmiko - 1906400053
-- Nabila Khansa - 1906293221
-- Natasya Zahra - 1906293253
+- Alisha Yumna Bakri
+- Gita Permatasari Sujatmiko
+- Nabila Khansa
+- Natasya Zahra
 
 
 
